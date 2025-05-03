@@ -175,12 +175,12 @@ button {
 }
 
 .logo {
-    width: 100px;
+    width: 70px;
     transition: var(--transition);
 }
 
 .header.scrolled .logo {
-    width: 110px;
+    width: 80px;
 }
 
 .main-nav {
