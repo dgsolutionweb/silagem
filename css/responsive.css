@@ -1,0 +1,623 @@
+/* 
+* Trevão Silagem - Estilos Responsivos
+* Otimização para smartphones e dispositivos móveis
+*/
+
+/* =========== PREVENÇÃO DE OVERFLOW DURANTE ANIMAÇÕES =========== */
+html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    position: relative;
+    max-width: 100vw;
+}
+
+/* Contentor principal para evitar overflow */
+.container {
+    overflow-x: clip; /* Valor moderno que corta o conteúdo sem criar barra */
+}
+
+/* Ajuste das animações para prevenir overflow */
+[data-aos] {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    /* Garantir que as animações fiquem dentro dos limites */
+    transform-origin: center center;
+}
+
+/* Correção específica para Webkit (Chrome, Safari) */
+@supports (-webkit-appearance:none) {
+    body, html {
+        position: relative;
+        width: 100%;
+        overflow-x: hidden !important;
+    }
+    
+    [data-aos] {
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+    }
+}
+
+/* Correção específica para Firefox */
+@-moz-document url-prefix() {
+    html, body {
+        scrollbar-width: none; /* Firefox */
+        overflow-x: hidden !important;
+    }
+}
+
+/* =========== MELHORIAS GERAIS DE RESPONSIVIDADE =========== */
+@media (max-width: 992px) {
+    .container {
+        width: 95%;
+    }
+    
+    .features-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .testimonials {
+        margin-top: 5rem;
+    }
+    
+    .service-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 4rem;
+    }
+    
+    /* Otimização de imagens para tablets */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* =========== OTIMIZAÇÕES PARA TABLETS =========== */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    html {
+        font-size: 55%;
+    }
+    
+    .section-title {
+        font-size: 3.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 4rem;
+    }
+    
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .hero .subtitle {
+        font-size: 1.8rem;
+    }
+    
+    /* Header e navegação */
+    .header .container {
+        padding: 0.5rem 0;
+    }
+    
+    .logo {
+        width: 60px;
+    }
+    
+    /* Menu Mobile Aprimorado */
+    .mobile-menu-toggle {
+        display: block;
+        z-index: 1001;
+        position: relative;
+        width: 3rem;
+        height: 2.4rem;
+        margin-right: 1rem;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+    }
+    
+    .hamburger,
+    .hamburger::before,
+    .hamburger::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-primary);
+        transition: all 0.3s ease-in-out;
+        border-radius: 3px;
+    }
+    
+    .hamburger {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .hamburger::before {
+        top: -8px;
+    }
+    
+    .hamburger::after {
+        bottom: -8px;
+    }
+    
+    .mobile-menu-toggle.active .hamburger {
+        background-color: transparent;
+    }
+    
+    .mobile-menu-toggle.active .hamburger::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .mobile-menu-toggle.active .hamburger::after {
+        bottom: 0;
+        transform: rotate(-45deg);
+    }
+    
+    .nav-list {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+        padding: 5rem 0;
+    }
+    
+    .nav-list.active {
+        right: 0;
+    }
+    
+    .nav-link {
+        color: var(--color-dark);
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-link:hover,
+    .nav-link:active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Seções */
+    .service-cards {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .feature-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .feature-icon {
+        margin-bottom: 1.5rem;
+        margin-right: 0;
+    }
+    
+    .process-steps {
+        padding-left: 4rem;
+    }
+    
+    .step-number {
+        left: -2rem;
+    }
+    
+    .testimonial {
+        padding: 2.5rem;
+    }
+    
+    .contact-container {
+        gap: 4rem;
+    }
+    
+    .contact-form {
+        padding: 3rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* =========== OTIMIZAÇÕES PARA SMARTPHONES =========== */
+@media (max-width: 576px) {
+    html {
+        font-size: 50%;
+    }
+    
+    .container {
+        width: 92%;
+    }
+    
+    .header {
+        padding: 1rem 0;
+    }
+    
+    .logo {
+        width: 50px;
+    }
+    
+    /* Otimização Menu Mobile para Smartphones */
+    .mobile-menu-toggle {
+        width: 2.8rem;
+        height: 2.2rem;
+        margin-right: 0.5rem;
+    }
+    
+    .nav-list {
+        width: 85%;
+        padding: 7rem 0 3rem;
+    }
+    
+    .nav-link {
+        font-size: 2rem;
+        padding: 1.5rem 2rem;
+    }
+    
+    .cta-nav {
+        margin-top: 1rem;
+        border-radius: 30px;
+        background-color: var(--color-primary);
+        color: white !important;
+        padding: 1.2rem 3rem !important;
+    }
+    
+    .hero {
+        min-height: 85vh;
+        background-position: center center;
+    }
+    
+    .hero-content {
+        padding: 0 1rem;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 3.4rem;
+        line-height: 1.3;
+    }
+    
+    .hero .subtitle {
+        font-size: 1.6rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.4rem;
+    }
+    
+    .section-title {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .service-card,
+    .testimonial,
+    .process-step .step-content,
+    .faq-item,
+    .contact-form {
+        padding: 2rem;
+    }
+    
+    .service-icon {
+        width: 5.5rem;
+        height: 5.5rem;
+        font-size: 2.2rem;
+    }
+    
+    .service-card h3,
+    .feature-content h3,
+    .testimonial-info h4,
+    .step-content h3,
+    .faq-question h3,
+    .cta-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .testimonial-image {
+        width: 5rem;
+        height: 5rem;
+    }
+    
+    .process-steps {
+        padding-left: 3rem;
+    }
+    
+    .process-steps::before {
+        left: 1rem;
+    }
+    
+    .step-number {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.8rem;
+        left: -1.75rem;
+    }
+    
+    .faq-question {
+        padding: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .faq-answer {
+        padding: 0 1.5rem 1.5rem;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+    
+    .info-item i {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    input,
+    textarea {
+        padding: 1.2rem;
+    }
+    
+    .footer {
+        padding: 5rem 0 3rem;
+    }
+    
+    .footer-content {
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .footer-links ul {
+        justify-content: center;
+    }
+    
+    .footer-newsletter {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    
+    .newsletter-form {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-bottom-links {
+        justify-content: center;
+    }
+    
+    .back-to-top {
+        width: 4rem;
+        height: 4rem;
+        bottom: 2rem;
+        right: 2rem;
+        font-size: 1.6rem;
+    }
+    
+    /* Otimização para imagens em smartphones */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .cert-logo img {
+        max-width: 60px;
+        margin: 0 auto;
+    }
+}
+
+/* =========== OTIMIZAÇÕES PARA SMARTPHONES PEQUENOS =========== */
+@media (max-width: 380px) {
+    html {
+        font-size: 45%;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .service-card,
+    .testimonial,
+    .process-step .step-content,
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    .certification-logos {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .cert-logo {
+        width: 100%;
+    }
+    
+    /* Ajustes de menu para smartphones muito pequenos */
+    .nav-list {
+        width: 90%;
+    }
+    
+    .nav-link {
+        font-size: 1.8rem;
+        padding: 1.2rem;
+    }
+}
+
+/* =========== CORREÇÕES DE ORIENTAÇÃO PARA DISPOSITIVOS MÓVEIS =========== */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+    }
+    
+    .nav-list {
+        padding: 2rem 0;
+        gap: 1.5rem;
+        overflow-y: auto;
+        justify-content: flex-start;
+    }
+    
+    .nav-link {
+        padding: 1rem;
+    }
+}
+
+/* =========== AJUSTES DE ACESSIBILIDADE =========== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =========== MELHORIAS DE INTERAÇÃO EM TOUCH =========== */
+.mobile-device a:active,
+.mobile-device button:active,
+.mobile-device .service-card:active,
+.mobile-device .faq-question:active,
+.touch-active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-in-out;
+}
+
+.mobile-device .btn:active {
+    opacity: 0.9;
+}
+
+/* Melhoria para experiência de foco em formulários */
+.input-focused {
+    position: relative;
+    z-index: 1;
+}
+
+.input-focused input,
+.input-focused textarea {
+    box-shadow: 0 0 0 2px var(--color-primary);
+    background-color: white;
+}
+
+/* Efeito de transição no hover/touch para elementos interativos */
+@media (hover: hover) {
+    .service-card:hover,
+    .cert-logo:hover,
+    .social-link:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Fundo escuro quando o menu mobile está aberto */
+body.menu-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Impedir rolagem quando o menu mobile está aberto */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* =========== OTIMIZAÇÃO DE IMAGENS =========== */
+/* Imagens responsivas - ajuste em diferentes tamanhos de tela */
+.testimonial-image,
+.cert-logo img,
+.footer-logo-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Garantir que elementos flutuantes não quebrem o layout */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Ajustes em iframes para versão mobile (vídeos, mapas, etc.) */
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Texto alternativo para imagens que não carregam */
+img::before {
+    content: attr(alt);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1.4rem;
+    color: var(--color-gray);
+    text-align: center;
+} 

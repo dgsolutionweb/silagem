@@ -4,13 +4,20 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicialização do AOS (Animate on Scroll)
-    AOS.init({
-        duration: 800,
-        easing: 'ease',
-        once: true,
-        offset: 100
-    });
+    // Inicialização do AOS será feita pelo arquivo mobile-optimizations.js
+    // para evitar duplicação e configurar corretamente os parâmetros de animação
+    
+    // Verificar se estamos em um dispositivo móvel
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Função auxiliar para prevenir overflow durante animações
+    function preventOverflow() {
+        document.documentElement.style.overflowX = 'hidden';
+        document.body.style.overflowX = 'hidden';
+    }
+    
+    // Garantir que não haja scrollbar horizontal
+    preventOverflow();
 
     // Header com transparência no scroll
     const header = document.querySelector('.header');
@@ -36,6 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.toggle('menu-open');
     });
     
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', function(event) {
+        const isClickInsideMenu = navList.contains(event.target);
+        const isClickOnToggle = menuToggle.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnToggle && navList.classList.contains('active')) {
+            menuToggle.classList.remove('active');
+            navList.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+    
     // Fechar menu ao clicar em links
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -46,7 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('menu-open');
         });
     });
-      // FAQ Accordion
+    
+    // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
     
     if (faqItems.length > 0) {
@@ -118,7 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.value = value;
         });
     }
-      // Lazy loading de imagens
+    
+    // Lazy loading de imagens
     const lazyImages = document.querySelectorAll('img[data-src]');
     
     if ('IntersectionObserver' in window) {
@@ -180,6 +201,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+                
+                // Prevenir overflow após o scroll
+                preventOverflow();
             }
         });
     });
